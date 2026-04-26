@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="tr" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SolarWind Enerji — Yenilenebilir Enerji Danışmanlığı</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0F1F3D;
+  --gold: #C8922A;
+  --gold-light: #E8B45A;
+  --white: #FFFFFF;
+  --off: #F7F6F3;
+  --light: #EFEFEB;
+  --gray: #8C8C8C;
+  --dark-gray: #3A3A3A;
+  --border: #E2E0DA;
+  --text: #1A1A1A;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:'Plus Jakarta Sans', sans-serif; background:var(--white); color:var(--text); overflow-x:hidden; }
+
+/* RTL */
+[dir="rtl"] .hero-content { padding-left:0; padding-right:80px; }
+[dir="rtl"] nav { flex-direction:row-reverse; }
+[dir="rtl"] .nav-links { flex-direction:row-reverse; }
+[dir="rtl"] .hero-cta { flex-direction:row-reverse; }
+[dir="rtl"] .about-grid { direction:rtl; }
+[dir="rtl"] .contact-grid { direction:rtl; }
+[dir="rtl"] .footer-grid { direction:rtl; }
+[dir="rtl"] .section-label { text-align:right; }
+[dir="rtl"] .service-card { text-align:right; }
+[dir="rtl"] .stat-item { text-align:right; }
+[dir="rtl"] .project-meta { flex-direction:row-reverse; }
+
+/* NAV */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 60px; height:72px;
+  background:rgba(255,255,255,0.97);
+  border-bottom:1px solid transparent;
+  transition:border-color 0.3s;
+}
+nav.scrolled { border-bottom-color:var(--border); }
+.nav-logo {
+  font-family:'Plus Jakarta Sans', sans-serif;
+  font-size:20px; font-weight:700;
+  color:var(--navy); text-decoration:none;
+  letter-spacing:1px;
+}
+.nav-logo em { color:var(--gold); font-style:normal; }
+.nav-links { display:flex; gap:36px; list-style:none; }
+.nav-links a {
+  color:var(--dark-gray); text-decoration:none;
+  font-size:13px; font-weight:400; letter-spacing:0.5px;
+  transition:color 0.2s;
+}
+.nav-links a:hover { color:var(--gold); }
+.nav-right { display:flex; align-items:center; gap:20px; }
+.nav-lang { display:flex; gap:4px; }
+.lang-btn {
+  background:none; border:1px solid var(--border);
+  color:var(--gray); padding:4px 10px; border-radius:3px;
+  font-family:'Plus Jakarta Sans', sans-serif; font-size:11px;
+  cursor:pointer; transition:all 0.2s;
+  text-transform:uppercase; letter-spacing:1px;
+  font-weight:500;
+}
+.lang-btn.active, .lang-btn:hover {
+  background:var(--navy); border-color:var(--navy);
+  color:var(--white);
+}
+
+/* HERO */
+#hero {
+  min-height:100vh; padding-top:72px;
+  position:relative; overflow:hidden;
+  display:flex; align-items:center;
+}
+.hero-left {
+  display:flex; flex-direction:column; justify-content:center;
+  padding:80px 60px 80px;
+  position:relative; z-index:2;
+  max-width:720px;
+}
+.hero-eyebrow {
+  display:flex; align-items:center; gap:12px;
+  font-size:11px; letter-spacing:3px; text-transform:uppercase;
+  color:var(--gold); margin-bottom:32px; font-weight:500;
+}
+.hero-eyebrow::before {
+  content:''; width:32px; height:1px; background:var(--gold);
+}
+.hero-title {
+  font-family:'Plus Jakarta Sans', sans-serif;
+  font-size:clamp(42px, 4.5vw, 64px);
+  font-weight:500; line-height:1.05;
+  color:var(--navy); margin-bottom:28px;
+  letter-spacing:-0.5px;
+}
+.hero-title em { color:var(--gold); font-style:normal; }
+.hero-desc {
+  font-size:16px; line-height:1.75; color:var(--gray);
+  max-width:440px; margin-bottom:48px; font-weight:300;
+}
+.hero-cta { display:flex; gap:16px; align-items:center; }
+.btn-primary {
+  background:var(--navy); color:var(--white);
+  padding:14px 32px; border-radius:3px;
+  font-size:13px; font-weight:500; letter-spacing:0.5px;
+  text-decoration:none; transition:all 0.25s; display:inline-block;
+  border:1px solid var(--navy);
+}
+.btn-primary:hover { background:var(--gold); border-color:var(--gold); }
+.btn-outline {
+  color:var(--navy); border:1px solid var(--navy);
+  padding:14px 32px; border-radius:3px;
+  font-size:13px; font-weight:500; letter-spacing:0.5px;
+  text-decoration:none; transition:all 0.25s; display:inline-block;
+}
+.btn-outline:hover { border-color:var(--gold); color:var(--gold); }
+
+.hero-stats {
+  display:flex; gap:0;
+  margin-top:72px;
+  padding-top:40px;
+  border-top:1px solid var(--border);
+}
+.stat-item { flex:1; }
+.stat-item:not(:last-child) { padding-right:32px; margin-right:32px; border-right:1px solid var(--border); }
+.stat-num {
+  font-family:'Plus Jakarta Sans', sans-serif;
+  font-size:28px; font-weight:700; color:var(--navy); line-height:1.2;
+}
+.stat-num em { color:var(--gold); font-style:normal; font-size:28px; }
+.stat-label { font-size:11px; color:var(--gray); letter-spacing:1.5px; text-transform:uppercase; margin-top:6px; font-weight:400; }
+
+
+.hero-pattern {
+  position:absolute; inset:0;
+  background-image:
+    linear-gradient(rgba(200,146,42,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200,146,42,0.05) 1px, transparent 1px);
+  background-size:56px 56px;
+}
+/* Big dramatic sun */
+.hero-sun {
+  width:340px; height:340px; position:relative;
+}
+.sun-c {
+  position:absolute; inset:18%;
+  border-radius:50%;
+  background:radial-gradient(circle at 38% 38%, #FFF0B0 0%, #FFD060 25%, #F5A623 55%, #C8761A 85%, #8B4A0A 100%);
+  box-shadow:
+    0 0 0 12px rgba(245,166,35,0.06),
+    0 0 40px 16px rgba(245,166,35,0.2),
+    0 0 100px 40px rgba(200,120,20,0.15),
+    0 0 180px 80px rgba(180,90,10,0.08);
+  animation:glow 5s ease-in-out infinite;
+}
+.sun-corona {
+  position:absolute; inset:14%;
+  border-radius:50%;
+  background:radial-gradient(circle, transparent 52%, rgba(245,166,35,0.04) 65%, transparent 75%);
+  animation:corona-pulse 5s ease-in-out infinite;
+}
+.sun-rays {
+  position:absolute; inset:0;
+  border-radius:50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg, rgba(245,166,35,0.03) 2deg, transparent 4deg,
+    transparent 14deg, rgba(245,166,35,0.03) 16deg, transparent 18deg,
+    transparent 28deg, rgba(245,166,35,0.03) 30deg, transparent 32deg,
+    transparent 42deg, rgba(245,166,35,0.03) 44deg, transparent 46deg,
+    transparent 56deg, rgba(245,166,35,0.03) 58deg, transparent 60deg,
+    transparent 70deg, rgba(245,166,35,0.03) 72deg, transparent 74deg,
+    transparent 84deg, rgba(245,166,35,0.03) 86deg, transparent 88deg,
+    transparent 98deg, rgba(245,166,35,0.03) 100deg, transparent 102deg,
+    transparent 112deg, rgba(245,166,35,0.03) 114deg, transparent 116deg,
+    transparent 126deg, rgba(245,166,35,0.03) 128deg, transparent 130deg,
+    transparent 140deg, rgba(245,166,35,0.03) 142deg, transparent 144deg,
+    transparent 154deg, rgba(245,166,35,0.03) 156deg, transparent 158deg,
+    transparent 168deg, rgba(245,166,35,0.03) 170deg, transparent 172deg,
+    transparent 182deg, rgba(245,166,35,0.03) 184deg, transparent 186deg,
+    transparent 196deg, rgba(245,166,35,0.03) 198deg, transparent 200deg,
+    transparent 210deg, rgba(245,166,35,0.03) 212deg, transparent 214deg,
+    transparent 224deg, rgba(245,166,35,0.03) 226deg, transparent 228deg,
+    transparent 238deg, rgba(245,166,35,0.03) 240deg, transparent 242deg,
+    transparent 252deg, rgba(245,166,35,0.03) 254deg, transparent 256deg,
+    transparent 266deg, rgba(245,166,35,0.03) 268deg, transparent 270deg,
+    transparent 280deg, rgba(245,166,35,0.03) 282deg, transparent 284deg,
+    transparent 294deg, rgba(245,166,35,0.03) 296deg, transparent 298deg,
+    transparent 308deg, rgba(245,166,35,0.03) 310deg, transparent 312deg,
+    transparent 322deg, rgba(245,166,35,0.03) 324deg, transparent 326deg,
+    transparent 336deg, rgba(245,166,35,0.03) 338deg, transparent 340deg,
+    transparent 350deg, rgba(245,166,35,0.03) 352deg, transparent 360deg
+  );
+  animation:spin1 60s linear infinite;
+}
+@keyframes glow {
+  0%,100% { box-shadow: 0 0 0 12px rgba(245,166,35,0.06), 0 0 40px 16px rgba(245,166,35,0.2), 0 0 100px 40px rgba(200,120,20,0.15), 0 0 180px 80px rgba(180,90,10,0.08); }
+  50% { box-shadow: 0 0 0 16px rgba(245,166,35,0.08), 0 0 60px 24px rgba(245,166,35,0.28), 0 0 130px 56px rgba(200,120,20,0.2), 0 0 220px 100px rgba(180,90,10,0.1); }
+}
+@keyframes corona-pulse {
+  0%,100% { transform:scale(1); opacity:0.6; }
+  50% { transform:scale(1.04); opacity:1; }
+}
+@keyframes spin1 { to{transform:rotate(360deg)} }
+.hero-company {
+  font-family:'Plus Jakarta Sans', sans-serif;
+  font-size:11px; color:rgba(255,255,255,0.35);
+  letter-spacing:5px; text-transform:uppercase;
+}
+.hero-since {
+  font-size:11px; color:var(--gold); letter-spacing:3px;
+  text-transform:uppercase; opacity:0.7;
+}
+
+/* SECTION BASE */
+section { padding:72px 60px; }
+.section-label {
+  font-size:11px; letter-spacing:3px; text-transform:uppercase;
+  color:var(--gold); margin-bottom:16px; font-weight:500;
+  display:flex; align-items:center; gap:12px;
+}
+.section-label::before { content:''; width:24px; height:1px; background:var(--gold); }
+.section-title {
+  font-family:'Plus Jakarta Sans', sans-serif;
+  font-size:clamp(30px, 3.5vw, 44px);
+  font-weight:500; color:var(--navy);
+  line-height:1.1; letter-spacing:-0.3px;
+}
+.section-title em { color:var(--gold); font-style:normal; }
+.section-title span { display:block; }
+
+/* ABOUT */
+#hakkimizda { background:var(--off); }
+.about-grid { display:grid; grid-template-columns:1fr 1fr; gap:100px; align-items:center; }
+.about-visual { position:relative; }
+.about-card {
+  background:var(--white); border:1px solid var(--border);
+  padding:48px; border-radius:2px;
+  box-shadow:0 4px 40px rgba(0,0,0,0.06);
+}
+.about-card-title {
+  font-family:'Plus Jakarta Sans', sans-serif;
+  font-size:36px; color:var(--navy); font-weight:700;
+  line-height:1; margin-bottom:8px;
+}
+.about-card-title em { color:var(--gold); font-style:normal; }
+.about-card-sub { font-size:12px; color:var(--gray); letter-spacing:2px; text-transform:uppercase; }
+.about-divider { height:1px; background:var(--border); margin:32px 0; }
+.about-services-list { display:flex; flex-direction:column; gap:12px; }
+.about-svc {
+  display:flex; align-items:flex-start; gap:12px;
+  font-size:14px; color:var(--dark-gray); line-height:1.5;
+}
+.about-svc::before { content:'—'; color:var(--gold); flex-shrink:0; margin-top:1px; }
+.about-accent {
+  position:absolute; bottom:-20px; right:-20px;
+  width:120px; height:120px;
+  background:var(--gold); opacity:0.08; border-radius:50%;
+}
+.about-text { }
+.about-text p { font-size:15px; line-height:1.8; color:var(--gray); margin-top:24px; font-weight:300; }
+.about-text p strong { color:var(--navy); font-weight:500; }
+.about-features { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--border); margin-top:48px; border:1px solid var(--border); }
+.feat {
+  background:var(--white); padding:24px;
+  transition:background 0.2s;
+}
+.feat:hover { background:var(--off); }
+.feat-num { font-family:'Plus Jakarta Sans', sans-serif; font-size:32px; color:var(--gold); opacity:0.4; line-height:1; margin-bottom:8px; }
+.feat-t { font-size:14px; font-weight:500; color:var(--navy); margin-bottom:4px; }
+.feat-d { font-size:12px; color:var(--gray); line-height:1.5; }
+
+/* SERVICES */
+#hizmetler { background:var(--white); }
+.services-top { display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:36px; }
+
+/* SERVICES — category tab layout */
+.srv-categories { display:flex; gap:0; margin-bottom:48px; border-bottom:1px solid var(--border); }
+.srv-cat-btn { background:none; border:none; padding:14px 28px; font-family:'Plus Jakarta Sans', sans-serif; font-size:13px; font-weight:500; color:var(--gray); cursor:pointer; position:relative; letter-spacing:0.3px; transition:color 0.2s; }
+.srv-cat-btn::after { content:''; position:absolute; bottom:-1px; left:0; right:0; height:2px; background:var(--gold); transform:scaleX(0); transition:transform 0.3s ease; }
+.srv-cat-btn.active { color:var(--navy); }
+.srv-cat-btn.active::after { transform:scaleX(1); }
+.srv-panel { display:none; }
+.srv-panel.active { display:block; }
+.services-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border); }
+.service-card { background:var(--white); padding:40px 36px; position:relative; transition:background 0.25s; }
+.service-card:hover { background:var(--navy); }
+.service-card:hover .service-title, .service-card:hover .service-num { color:var(--white); }
+.service-card:hover .service-desc { color:rgba(255,255,255,0.6); }
+.service-card:hover .service-icon-wrap { background:rgba(200,146,42,0.2); }
+.service-num { font-size:11px; color:var(--gold); letter-spacing:3px; margin-bottom:24px; font-weight:600; transition:color 0.25s; text-transform:uppercase; }
+.service-icon-wrap { width:44px; height:44px; background:var(--off); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:20px; margin-bottom:20px; transition:background 0.25s; }
+.service-title { font-size:16px; font-weight:600; color:var(--navy); margin-bottom:12px; transition:color 0.25s; }
+.service-desc { font-size:13px; color:var(--gray); line-height:1.75; transition:color 0.25s; }
+
+/* PROJECTS */
+#projeler { background:var(--off); }
+.projects-tabs { display:flex; gap:0; margin-top:32px; margin-bottom:48px; border:1px solid var(--border); width:fit-content; border-radius:3px; overflow:hidden; }
+.tab-btn { background:none; border:none; padding:10px 28px; font-family:'Plus Jakarta Sans', sans-serif; font-size:12px; cursor:pointer; transition:all 0.2s; letter-spacing:1.5px; text-transform:uppercase; color:var(--gray); font-weight:500; }
+.tab-btn.active { background:var(--navy); color:var(--white); }
+.projects-panel { display:none; }
+.projects-panel.active { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+.project-card {
+  background:var(--white); border:1px solid var(--border);
+  border-radius:2px; overflow:hidden;
+  transition:transform 0.3s, box-shadow 0.3s;
+}
+.project-card:hover { transform:translateY(-4px); box-shadow:0 12px 40px rgba(0,0,0,0.1); }
+.project-card.featured { grid-column:span 2; }
+.project-thumb {
+  height:200px; background:var(--navy);
+  position:relative; overflow:hidden;
+  display:flex; align-items:center; justify-content:center;
+}
+.project-card.featured .project-thumb { height:260px; }
+.project-thumb-icon { font-size:56px; opacity:0.06; }
+.project-flag { position:absolute; top:16px; left:16px; font-size:20px; }
+.project-cap {
+  position:absolute; top:16px; right:16px;
+  background:var(--gold); color:var(--white);
+  font-size:11px; font-weight:600; padding:4px 10px;
+  border-radius:2px; letter-spacing:1px;
+}
+.project-thumb-line { position:absolute; bottom:0; left:0; right:0; height:2px; background:var(--gold); }
+.project-info { padding:24px; }
+.project-loc { font-size:11px; color:var(--gold); letter-spacing:2px; text-transform:uppercase; margin-bottom:8px; font-weight:500; }
+.project-name { font-family:'Plus Jakarta Sans', sans-serif; font-size:20px; font-weight:500; color:var(--navy); margin-bottom:8px; }
+.project-desc { font-size:13px; color:var(--gray); line-height:1.65; }
+.project-badge { display:inline-block; margin-top:14px; font-size:11px; padding:3px 10px; border-radius:20px; letter-spacing:1px; font-weight:500; }
+.badge-done { background:rgba(34,197,94,0.08); color:#16a34a; border:1px solid rgba(34,197,94,0.2); }
+.badge-on { background:rgba(200,146,42,0.08); color:var(--gold); border:1px solid rgba(200,146,42,0.2); }
+
+/* ORTAKLAR */
+#kadro { background:var(--white); }
+.partners-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:60px; }
+.partner-card { display:grid; grid-template-columns:180px 1fr; border:1px solid var(--border); border-radius:2px; overflow:hidden; transition:box-shadow 0.3s; }
+.partner-card:hover { box-shadow:0 8px 40px rgba(0,0,0,0.09); }
+.partner-photo { background:var(--navy); position:relative; display:flex; align-items:center; justify-content:center; min-height:300px; }
+.partner-initial { font-family:'Plus Jakarta Sans', sans-serif; font-size:64px; color:rgba(200,146,42,0.12); font-weight:700; letter-spacing:2px; }
+.partner-photo-line { position:absolute; right:0; top:0; bottom:0; width:3px; background:var(--gold); }
+.partner-info { padding:36px 32px; display:flex; flex-direction:column; justify-content:center; }
+.partner-role { font-size:10px; color:var(--gold); letter-spacing:3px; text-transform:uppercase; margin-bottom:10px; font-weight:500; }
+.partner-name { font-family:'Plus Jakarta Sans', sans-serif; font-size:22px; font-weight:700; color:var(--navy); line-height:1.2; margin-bottom:14px; }
+.partner-divider { width:28px; height:1px; background:var(--gold); margin-bottom:14px; }
+.partner-bio { font-size:13px; color:var(--gray); line-height:1.75; font-weight:300; margin-bottom:20px; flex-grow:1; }
+.partner-linkedin { display:inline-flex; align-items:center; gap:8px; font-size:11px; color:var(--navy); text-decoration:none; font-weight:500; letter-spacing:0.5px; border:1px solid var(--border); padding:7px 14px; border-radius:3px; transition:all 0.2s; align-self:flex-start; }
+.partner-linkedin:hover { background:var(--navy); color:var(--white); border-color:var(--navy); }
+
+/* REFERENCES */
+#referanslar { background:var(--off); }
+.refs-intro { font-size:15px; color:var(--gray); max-width:520px; margin-top:16px; line-height:1.75; font-weight:300; }
+.refs-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border); border:1px solid var(--border); margin-top:60px; }
+.ref-card {
+  background:var(--white); padding:40px 28px;
+  display:flex; flex-direction:column; gap:16px;
+  transition:background 0.2s; cursor:default;
+}
+.ref-card:hover { background:var(--navy); }
+.ref-card:hover .ref-name { color:var(--white); }
+.ref-card:hover .ref-desc { color:rgba(255,255,255,0.5); }
+.ref-card:hover .ref-dot { background:var(--gold); }
+.ref-dot { width:8px; height:8px; background:var(--gold); opacity:0.4; border-radius:50%; transition:all 0.2s; }
+.ref-card:hover .ref-dot { opacity:1; }
+.ref-name { font-family:'Plus Jakarta Sans', sans-serif; font-size:16px; font-weight:600; color:var(--navy); line-height:1.3; transition:color 0.2s; }
+.ref-desc { font-size:12px; color:var(--gray); line-height:1.6; transition:color 0.2s; }
+.ref-tag { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); font-weight:500; margin-top:auto; }
+
+/* GALLERY */
+/* REFS MARQUEE */
+.refs-marquee-track {
+  display:flex; gap:0; width:max-content;
+  animation:refs-scroll 30s linear infinite;
+}
+.refs-marquee-track:hover { animation-play-state:paused; }
+.refs-logo-item {
+  padding:28px 44px;
+  display:flex; align-items:center; justify-content:center;
+  border-right:1px solid var(--border);
+  transition:background 0.2s;
+  cursor:default; flex-shrink:0;
+  min-width:180px;
+}
+.refs-logo-item:hover { background:var(--white); }
+.refs-logo-item:hover svg text { fill:var(--navy) !important; }
+@keyframes refs-scroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+#galeri { background:var(--white); }
+.gallery-grid { display:grid; grid-template-columns:repeat(4,1fr); grid-template-rows:220px 220px; gap:8px; margin-top:60px; }
+.g-item { background:var(--navy); position:relative; overflow:hidden; cursor:pointer; border-radius:1px; }
+.g-item:first-child { grid-column:span 2; grid-row:span 2; }
+.g-item:nth-child(4) { grid-column:span 2; }
+.g-bg { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:44px; opacity:0.07; transition:opacity 0.3s, transform 0.4s; }
+.g-item:hover .g-bg { opacity:0.12; transform:scale(1.06); }
+.g-overlay { position:absolute; inset:0; background:linear-gradient(to top, rgba(15,31,61,0.85) 0%, transparent 60%); opacity:0; transition:opacity 0.3s; display:flex; align-items:flex-end; padding:20px; }
+.g-item:hover .g-overlay { opacity:1; }
+.g-label { font-size:13px; color:var(--white); font-weight:400; letter-spacing:0.3px; }
+
+/* CONTACT */
+#iletisim { background:var(--white); }
+.contact-grid { display:grid; grid-template-columns:1fr 1.2fr; gap:100px; align-items:start; }
+.contact-left p { font-size:15px; color:var(--gray); line-height:1.8; margin-top:20px; font-weight:300; }
+.contact-details { margin-top:48px; display:flex; flex-direction:column; gap:0; border:1px solid var(--border); border-radius:2px; overflow:hidden; }
+.c-item { display:flex; align-items:center; gap:16px; padding:20px 24px; background:var(--white); border-bottom:1px solid var(--border); transition:background 0.2s; }
+.c-item:last-child { border-bottom:none; }
+.c-item:hover { background:var(--off); }
+.c-icon { width:40px; height:40px; background:var(--off); border:1px solid var(--border); border-radius:8px; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:background 0.2s; }
+.c-item:hover .c-icon { background:var(--navy); }
+.c-item:hover .c-icon svg { stroke:var(--white); }
+.c-label { font-size:10px; color:var(--gold); letter-spacing:2px; text-transform:uppercase; margin-bottom:3px; font-weight:500; }
+.c-val { font-size:14px; color:var(--navy); font-weight:400; }
+
+.contact-form { display:flex; flex-direction:column; gap:16px; background:var(--white); padding:48px; border:1px solid var(--border); border-radius:2px; }
+.form-title { font-family:'Plus Jakarta Sans', sans-serif; font-size:24px; font-weight:700; color:var(--navy); margin-bottom:8px; }
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.f-group { display:flex; flex-direction:column; gap:8px; }
+.f-group label { font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--gray); font-weight:500; }
+.f-group input, .f-group textarea, .f-group select {
+  background:var(--off); border:1px solid var(--border);
+  border-radius:3px; padding:12px 16px;
+  color:var(--text); font-family:'Plus Jakarta Sans', sans-serif; font-size:14px;
+  outline:none; transition:border-color 0.2s; resize:none;
+  font-weight:300;
+}
+.f-group input:focus, .f-group textarea:focus { border-color:var(--navy); background:var(--white); }
+.f-group select { cursor:pointer; }
+.f-group select option { background:var(--white); }
+.f-group textarea { height:110px; }
+.f-submit {
+  background:var(--navy); color:var(--white);
+  padding:14px 36px; border:1px solid var(--navy); border-radius:3px;
+  font-family:'Plus Jakarta Sans', sans-serif; font-weight:500;
+  font-size:13px; letter-spacing:1px; text-transform:uppercase;
+  cursor:pointer; transition:all 0.25s; align-self:flex-start;
+}
+.f-submit:hover { background:var(--gold); border-color:var(--gold); }
+
+/* FOOTER */
+footer { background:var(--navy); color:var(--white); padding:60px; }
+.footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:60px; padding-bottom:48px; border-bottom:1px solid rgba(255,255,255,0.08); }
+.footer-logo { font-family:'Plus Jakarta Sans', sans-serif; font-size:24px; font-weight:600; color:var(--white); text-decoration:none; letter-spacing:1px; display:inline-block; margin-bottom:16px; }
+.footer-logo em { color:var(--gold); font-style:normal; }
+.footer-brand p { font-size:13px; color:rgba(255,255,255,0.4); line-height:1.7; max-width:260px; font-weight:300; }
+.footer-col h4 { font-size:10px; letter-spacing:2.5px; text-transform:uppercase; color:var(--gold); margin-bottom:20px; font-weight:500; }
+.footer-col ul { list-style:none; display:flex; flex-direction:column; gap:10px; }
+.footer-col ul a { font-size:13px; color:rgba(255,255,255,0.45); text-decoration:none; transition:color 0.2s; font-weight:300; }
+.footer-col ul a:hover { color:var(--white); }
+.footer-bottom { padding-top:32px; display:flex; align-items:center; justify-content:space-between; }
+.footer-bottom p { font-size:12px; color:rgba(255,255,255,0.3); }
+.footer-social { display:flex; gap:10px; }
+.social-a { width:34px; height:34px; border-radius:4px; border:1px solid rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; font-size:13px; text-decoration:none; color:rgba(255,255,255,0.4); transition:all 0.2s; }
+.social-a:hover { border-color:var(--gold); color:var(--gold); }
+
+::-webkit-scrollbar { width:4px; }
+::-webkit-scrollbar-track { background:var(--white); }
+::-webkit-scrollbar-thumb { background:var(--gold); border-radius:2px; }
+
+
+/* ENHANCED ANIMATIONS */
+.fade-up { opacity:0; transform:translateY(32px); transition:opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1); }
+.fade-up.visible { opacity:1; transform:translateY(0); }
+.fade-up:nth-child(2) { transition-delay:0.1s; }
+.fade-up:nth-child(3) { transition-delay:0.2s; }
+.fade-up:nth-child(4) { transition-delay:0.3s; }
+
+/* Service card hover lift */
+.service-card { transform:translateY(0); transition:background 0.25s, transform 0.3s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s; }
+.service-card:hover { transform:translateY(-6px); box-shadow:0 20px 48px rgba(15,31,61,0.12); }
+
+/* Stat counter */
+.stat-num { transition:color 0.3s; }
+
+/* Nav link underline animation */
+.nav-links a { position:relative; }
+.nav-links a::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:1px; background:var(--gold); transition:width 0.3s ease; }
+.nav-links a:hover::after { width:100%; }
+
+/* Partner card */
+.partner-card { transition:box-shadow 0.4s cubic-bezier(0.22,1,0.36,1), transform 0.4s cubic-bezier(0.22,1,0.36,1); }
+.partner-card:hover { transform:translateY(-6px); }
+
+/* Project card */
+.project-card { transition:transform 0.4s cubic-bezier(0.22,1,0.36,1), box-shadow 0.4s, border-color 0.3s; }
+
+/* Ref card */
+.ref-card { transition:background 0.3s, transform 0.3s cubic-bezier(0.22,1,0.36,1); }
+.ref-card:hover { transform:translateY(-4px); }
+
+/* Hero eyebrow pulse */
+@keyframes eyebrow-in { from{opacity:0;transform:translateX(-20px)} to{opacity:1;transform:translateX(0)} }
+.hero-eyebrow { animation:eyebrow-in 0.9s cubic-bezier(0.22,1,0.36,1) both; }
+.hero-title { animation:fadeUp 1s 0.15s cubic-bezier(0.22,1,0.36,1) both; }
+.hero-desc { animation:fadeUp 1s 0.3s cubic-bezier(0.22,1,0.36,1) both; }
+.hero-cta { animation:fadeUp 1s 0.45s cubic-bezier(0.22,1,0.36,1) both; }
+.hero-stats { animation:fadeUp 1s 0.6s cubic-bezier(0.22,1,0.36,1) both; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+
+/* Section label slide in */
+.section-label { overflow:hidden; }
+
+/* Service icon color on hover */
+.service-card .service-icon-wrap svg { color:var(--gold); transition:color 0.25s, transform 0.3s; }
+.service-card:hover .service-icon-wrap svg { color:var(--gold-light); transform:scale(1.15); }
+
+/* Gold line grow */
+.partner-divider { transition:width 0.4s ease; }
+.partner-card:hover .partner-divider { width:56px; }
+
+
+@media (max-width:1024px) {
+  nav { padding:0 24px; }
+  .nav-links { display:none; }
+  section { padding:56px 24px; }
+  #hero { grid-template-columns:1fr; min-height:auto; }
+  .hero-left { padding:60px 24px; }
+  .about-grid { grid-template-columns:1fr; gap:48px; }
+  .services-grid { grid-template-columns:1fr 1fr; }
+  .projects-panel.active { grid-template-columns:1fr 1fr; }
+  .project-card.featured { grid-column:span 2; }
+  #iletisim { padding:80px 24px; }
+  .contact-grid { grid-template-columns:1fr; gap:48px; }
+  .gallery-grid { grid-template-columns:1fr 1fr; grid-template-rows:repeat(4,160px); }
+  .g-item:first-child { grid-column:span 1; grid-row:span 2; }
+  .g-item:nth-child(4) { grid-column:span 1; }
+  .footer-grid { grid-template-columns:1fr 1fr; gap:40px; }
+  .partners-grid { grid-template-columns:1fr; }
+  .partner-card { grid-template-columns:140px 1fr; }
+  .refs-grid { grid-template-columns:1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a href="#" class="nav-logo">Solar<em>Wind</em></a>
+  <ul class="nav-links">
+    <li><a href="#hakkimizda" data-i18n="n_about">Hakkımızda</a></li>
+    <li><a href="#hizmetler" data-i18n="n_srv">Hizmetler</a></li>
+    <li><a href="#projeler" data-i18n="n_prj">Referanslar</a></li>
+    <li><a href="#galeri" data-i18n="n_gal">Galeri</a></li>
+    <li><a href="#iletisim" data-i18n="n_con">İletişim</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="nav-lang">
+      <button class="lang-btn active" onclick="setLang('tr')">TR</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('ar')">AR</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero" style="background:var(--navy);">
+  <canvas id="particleCanvas" style="position:absolute;inset:0;width:100%;height:100%;z-index:0;"></canvas>
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 70% 50%, rgba(200,146,42,0.07), transparent);z-index:1;"></div>
+  <div class="hero-left" style="z-index:2; color:var(--white);">
+    <div class="hero-eyebrow" data-i18n="h_eyebrow" style="color:var(--gold);border-color:rgba(200,146,42,0.3);background:rgba(200,146,42,0.08);">Yenilenebilir Enerji Danışmanlığı</div>
+    <h1 class="hero-title" data-i18n="h_title" style="color:var(--white);">Sürdürülebilir Enerjide <em style="color:var(--gold);font-style:normal;">Güvenilir</em> İş Ortağınız</h1>
+    <p class="hero-desc" data-i18n="h_desc" style="color:rgba(255,255,255,0.6);">2014'ten bu yana lisanslı ve lisanssız proje geliştirme, proje yönetimi ve mevzuat danışmanlığı alanlarında profesyonel hizmet sunuyoruz.</p>
+    <div class="hero-cta">
+      <a href="#hizmetler" class="btn-primary" data-i18n="h_btn1">Hizmetlerimiz</a>
+      <a href="#iletisim" class="btn-outline" data-i18n="h_btn2" style="color:var(--white);border-color:rgba(255,255,255,0.4);">İletişime Geç</a>
+    </div>
+    <div class="hero-stats" style="border-top-color:rgba(255,255,255,0.1);">
+      <div class="stat-item">
+        <div class="stat-num" style="color:var(--gold);">1.000<em style="color:rgba(255,255,255,0.7);font-size:20px;font-style:normal;">+ MW</em></div>
+        <div class="stat-label" style="color:rgba(255,255,255,0.45);" data-i18n="s1">Proje Danışmanlığı</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" style="color:var(--gold);">GES<em style="color:rgba(255,255,255,0.7);font-size:20px;font-style:normal;"> & RES</em></div>
+        <div class="stat-label" style="color:rgba(255,255,255,0.45);" data-i18n="s2">Proje Uzmanlığı</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" style="color:var(--gold);font-size:20px;line-height:1.3;">Veri Merkezi</div>
+        <div class="stat-label" style="color:rgba(255,255,255,0.45);" data-i18n="s3">Proje Geliştirme</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" style="color:var(--gold);font-size:20px;line-height:1.3;">EV Şarj</div>
+        <div class="stat-label" style="color:rgba(255,255,255,0.45);">Proje Danışmanlığı</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" style="color:var(--gold);font-size:20px;line-height:1.3;">BESS</div>
+        <div class="stat-label" style="color:rgba(255,255,255,0.45);">Projelendirme & Tedarik</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HİZMETLER -->
+<section id="hizmetler">
+  <div class="services-top fade-up">
+    <div>
+      <div class="section-label" data-i18n="sv_tag">Hizmetlerimiz</div>
+      <h2 class="section-title"><span data-i18n="sv_t1">Hizmet</span><span><em data-i18n="sv_t2">Alanlarımız</em></span></h2>
+    </div>
+    <a href="#iletisim" class="btn-outline" data-i18n="sv_cta">Teklif Al</a>
+  </div>
+
+  <div class="srv-categories fade-up">
+    <button class="srv-cat-btn active" onclick="showSrvCat('cat1',this)">Proje Geliştirme</button>
+    <button class="srv-cat-btn" onclick="showSrvCat('cat2',this)">Danışmanlık & Lisans</button>
+    <button class="srv-cat-btn" onclick="showSrvCat('cat3',this)">Yeni Teknolojiler</button>
+  </div>
+
+  <div class="srv-panel active" id="cat1">
+    <div class="services-grid">
+      <div class="service-card"><div class="service-num">01</div><div class="service-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22" height="22"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg></div><div class="service-title">Proje Yönetimi</div><p class="service-desc">Başlangıçtan devreye almaya kadar tüm süreçlerin profesyonel yönetimi. Zaman ve bütçe hedeflerine uygun teslimat.</p></div>
+      <div class="service-card"><div class="service-num">02</div><div class="service-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22" height="22"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div><div class="service-title">Saha Seçimi</div><p class="service-desc">Güneş ve rüzgar kaynağı analizi, arazi mülkiyet araştırması, imar durumu tespiti ve saha fizibilite çalışmaları.</p></div>
+      <div class="service-card"><div class="service-num">03</div><div class="service-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22" height="22"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 014-10 15.3 15.3 0 01-4-10z"/></svg></div><div class="service-title">Uluslararası Projeler</div><p class="service-desc">Yurt dışı yenilenebilir enerji projelerinde geliştirme, danışmanlık ve yatırımcı temsili hizmetleri.</p></div>
+    </div>
+  </div>
+
+  <div class="srv-panel" id="cat2">
+    <div class="services-grid">
+      <div class="service-card"><div class="service-num">04</div><div class="service-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22" height="22"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg></div><div class="service-title">Due-Diligence</div><p class="service-desc">Teknik ve idari due-diligence hizmetleri. Mevcut projelerin ve varlıkların kapsamlı incelemesi.</p></div>
+      <div class="service-card"><div class="service-num">05</div><div class="service-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22" height="22"><path d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"/></svg></div><div class="service-title">Resmi Kurumlar</div><p class="service-desc">EPDK, TEİAŞ, TEDAŞ ve ilgili tüm kamu kurumları ile resmi iletişim ve başvuru süreçlerinin yönetimi.</p></div>
+      <div class="service-card"><div class="service-num">06</div><div class="service-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22" height="22"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></div><div class="service-title">Lisans İşlemleri</div><p class="service-desc">Önlisans ve lisans başvurularının hazırlanması, takibi ve sonuçlandırılması.</p></div>
+    </div>
+  </div>
+
+  <div class="srv-panel" id="cat3">
+    <div class="services-grid">
+      <div class="service-card"><div class="service-num">07</div><div class="service-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22" height="22"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg></div><div class="service-title">Veri Merkezi Projeleri</div><p class="service-desc">Veri merkezlerine ilişkin enerji altyapısı planlama, güç bağlantı anlaşmaları ve proje geliştirme hizmetleri.</p></div>
+      <div class="service-card"><div class="service-num">08</div><div class="service-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22" height="22"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><div class="service-title">EV Şarj Altyapısı</div><p class="service-desc">Elektrikli araç şarj istasyonları için altyapı planlama, bağlantı izinleri ve proje geliştirme danışmanlığı.</p></div>
+      <div class="service-card"><div class="service-num">09</div><div class="service-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22" height="22"><path d="M4 7h16M4 12h16M4 17h7"/><path d="M15 15l2 2 4-4"/></svg></div><div class="service-title">Enerji Depolama (BESS)</div><p class="service-desc">Batarya enerji depolama sistemlerinde fizibilite, lisanslama ve proje geliştirme danışmanlığı.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- HAKKIMIZDA -->
+<section id="hakkimizda" style="background:var(--off);">
+  <div class="fade-up" style="margin-bottom:36px;">
+    <div class="section-label">Hakkımızda</div>
+    <h2 class="section-title">Biz <em>Kimiz</em></h2>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;align-items:start;">
+    <!-- Sol: Şirket -->
+    <div class="fade-up" style="background:var(--white);border:1px solid var(--border);border-radius:2px;padding:40px;height:100%;">
+      <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:20px;">2014'ten Beri</div>
+      <div style="font-size:22px;font-weight:700;color:var(--navy);line-height:1.3;margin-bottom:20px;">Solar<em style="color:var(--gold);font-style:normal;">Wind</em> Enerji</div>
+      <div style="width:28px;height:1px;background:var(--gold);margin-bottom:24px;"></div>
+      <p style="font-size:14px;color:var(--gray);line-height:1.8;font-weight:300;">2014'ten bu yana lisanslı ve lisanssız yenilenebilir enerji projelerinde proje geliştirme, yönetim ve mevzuat danışmanlığı hizmetleri sunuyoruz.</p>
+      <p style="font-size:14px;color:var(--gray);line-height:1.8;font-weight:300;margin-top:16px;">GES, RES, enerji depolama ve EV şarj altyapısından veri merkezi projelerine kadar <strong style="color:var(--navy);font-weight:500;">yeni teknolojilere hızlı adapte olan</strong> bir ekiple çalışıyoruz.</p>
+      <p style="font-size:14px;color:var(--gray);line-height:1.8;font-weight:300;margin-top:16px;">Hem <strong style="color:var(--navy);font-weight:500;">yatırımcı</strong> hem <strong style="color:var(--navy);font-weight:500;">danışman</strong> kimliğiyle projenizin her aşamasında yanınızdayız.</p>
+      <div style="margin-top:28px;padding-top:28px;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:10px;">
+        <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--dark-gray);"><span style="color:var(--gold);">—</span> GES & RES Proje Geliştirme</div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--dark-gray);"><span style="color:var(--gold);">—</span> Lisans & Mevzuat Danışmanlığı</div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--dark-gray);"><span style="color:var(--gold);">—</span> Veri Merkezi & EV Şarj Altyapısı</div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--dark-gray);"><span style="color:var(--gold);">—</span> Uluslararası Proje Danışmanlığı</div>
+      </div>
+    </div>
+    <!-- MFT -->
+    <div class="fade-up" style="background:var(--white);border:1px solid var(--border);border-radius:2px;overflow:hidden;">
+      <div style="height:220px;background:var(--navy);display:flex;align-items:center;justify-content:center;position:relative;">
+        <span style="font-size:72px;color:rgba(200,146,42,0.12);font-weight:700;letter-spacing:2px;">MFT</span>
+        <div style="position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--gold);"></div>
+      </div>
+      <div style="padding:28px 32px;">
+        <div style="font-size:10px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;font-weight:600;margin-bottom:10px;">Yönetim Kurulu Başkanı</div>
+        <div style="font-size:20px;font-weight:700;color:var(--navy);line-height:1.2;margin-bottom:12px;">Mehmet Fatih Toraman</div>
+        <div style="width:24px;height:1px;background:var(--gold);margin-bottom:14px;"></div>
+        <p style="font-size:13px;color:var(--gray);line-height:1.75;font-weight:300;">Yenilenebilir enerji sektöründe proje geliştirme ve yönetimi alanında uzman. Lisanslı ve lisanssız GES/RES projelerinde kapsamlı deneyim.</p>
+        <a href="https://www.linkedin.com/in/mehmet-fatih-toraman-81264bb9/" target="_blank" style="display:inline-flex;align-items:center;gap:8px;font-size:11px;color:var(--navy);text-decoration:none;font-weight:500;border:1px solid var(--border);padding:7px 14px;border-radius:3px;margin-top:20px;transition:all 0.2s;" onmouseover="this.style.background='#0F1F3D';this.style.color='white'" onmouseout="this.style.background='transparent';this.style.color='#0F1F3D'">LinkedIn →</a>
+      </div>
+    </div>
+    <!-- RFY -->
+    <div class="fade-up" style="background:var(--white);border:1px solid var(--border);border-radius:2px;overflow:hidden;">
+      <div style="height:220px;background:var(--navy);display:flex;align-items:center;justify-content:center;position:relative;">
+        <span style="font-size:72px;color:rgba(200,146,42,0.12);font-weight:700;letter-spacing:2px;">RFY</span>
+        <div style="position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--gold);"></div>
+      </div>
+      <div style="padding:28px 32px;">
+        <div style="font-size:10px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;font-weight:600;margin-bottom:10px;">Yönetim Kurulu Üyesi</div>
+        <div style="font-size:20px;font-weight:700;color:var(--navy);line-height:1.2;margin-bottom:12px;">Rauf Fırat Yaşar</div>
+        <div style="width:24px;height:1px;background:var(--gold);margin-bottom:14px;"></div>
+        <p style="font-size:13px;color:var(--gray);line-height:1.75;font-weight:300;">Enerji mevzuatı ve lisanslama süreçleri konusunda uzman. EPDK başvuru ve izin süreçlerinde derin bilgi birikimi.</p>
+        <a href="https://www.linkedin.com/in/rauf-f%C4%B1rat-ya%C5%9Far-11565130/" target="_blank" style="display:inline-flex;align-items:center;gap:8px;font-size:11px;color:var(--navy);text-decoration:none;font-weight:500;border:1px solid var(--border);padding:7px 14px;border-radius:3px;margin-top:20px;transition:all 0.2s;" onmouseover="this.style.background='#0F1F3D';this.style.color='white'" onmouseout="this.style.background='transparent';this.style.color='#0F1F3D'">LinkedIn →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJELER -->
+<!-- REFERANSLAR -->
+<section id="projeler" style="background:var(--white); padding:72px 0;">
+  <div class="fade-up" style="padding:0 60px; margin-bottom:32px;">
+    <div class="section-label">Referanslarımız</div>
+    <h2 class="section-title">Hizmet Verdiğimiz <em>Firmalar</em></h2>
+  </div>
+  <div style="overflow:hidden; position:relative;">
+    <div style="position:absolute;top:0;bottom:0;left:0;width:100px;background:linear-gradient(90deg,var(--white),transparent);z-index:2;"></div>
+    <div style="position:absolute;top:0;bottom:0;right:0;width:100px;background:linear-gradient(-90deg,var(--white),transparent);z-index:2;"></div>
+    <div class="refs-marquee-track">
+      <div class="refs-logo-item"><svg width="140" height="44" viewBox="0 0 140 44" xmlns="http://www.w3.org/2000/svg">
+          <text x="4" y="28" font-family="Plus Jakarta Sans,sans-serif" font-size="17" font-weight="600" fill="#1a2a4a" letter-spacing="1">AKÇA</text>
+          <line x1="4" y1="34" x2="44" y2="34" stroke="#C8922A" stroke-width="2"/>
+        </svg></div>
+      <div class="refs-logo-item"><svg width="140" height="44" viewBox="0 0 140 44" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="8" cy="22" r="4" fill="#C8922A"/>
+          <text x="20" y="28" font-family="Plus Jakarta Sans,sans-serif" font-size="17" font-weight="600" fill="#1a2a4a">Yırcalı</text>
+        </svg></div>
+      <div class="refs-logo-item"><svg width="140" height="44" viewBox="0 0 140 44" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="8" width="28" height="28" rx="3" fill="#1a2a4a"/>
+          <text x="16" y="27" font-family="Plus Jakarta Sans,sans-serif" font-size="13" font-weight="700" fill="white" text-anchor="middle">SA</text>
+          <text x="36" y="28" font-family="Plus Jakarta Sans,sans-serif" font-size="17" font-weight="500" fill="#1a2a4a">Sanko</text>
+        </svg></div>
+      <div class="refs-logo-item"><svg width="140" height="44" viewBox="0 0 140 44" xmlns="http://www.w3.org/2000/svg">
+          <text x="4" y="28" font-family="Plus Jakarta Sans,sans-serif" font-size="17" font-weight="600" fill="#1a2a4a" letter-spacing="1">GÜRS</text>
+          <line x1="4" y1="34" x2="44" y2="34" stroke="#C8922A" stroke-width="2"/>
+        </svg></div>
+      <div class="refs-logo-item"><svg width="140" height="44" viewBox="0 0 140 44" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="8" cy="22" r="4" fill="#C8922A"/>
+          <text x="20" y="28" font-family="Plus Jakarta Sans,sans-serif" font-size="17" font-weight="600" fill="#1a2a4a">Faik C.</text>
+        </svg></div>
+      <div class="refs-logo-item"><svg width="140" height="44" viewBox="0 0 140 44" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="8" width="28" height="28" rx="3" fill="#1a2a4a"/>
+          <text x="16" y="27" font-family="Plus Jakarta Sans,sans-serif" font-size="13" font-weight="700" fill="white" text-anchor="middle">ER</text>
+          <text x="36" y="28" font-family="Plus Jakarta Sans,sans-serif" font-size="17" font-weight="500" fill="#1a2a4a">ERG</text>
+        </svg></div>
+      <div class="refs-logo-item"><svg width="140" height="44" viewBox="0 0 140 44" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="8" cy="22" r="4" fill="#C8922A"/>
+          <text x="20" y="28" font-family="Plus Jakarta Sans,sans-serif" font-size="17" font-weight="600" fill="#1a2a4a">Doğan</text>
+        </svg></div>
+      <div class="refs-logo-item"><svg width="140" height="44" viewBox="0 0 140 44" xmlns="http://www.w3.org/2000/svg">
+          <text x="4" y="28" font-family="Plus Jakarta Sans,sans-serif" font-size="17" font-weight="600" fill="#1a2a4a" letter-spacing="1">AKFEN</text>
+          <line x1="4" y1="34" x2="54" y2="34" stroke="#C8922A" stroke-width="2"/>
+        </svg></div>
+      <div class="refs-logo-item"><svg width="140" height="44" viewBox="0 0 140 44" xmlns="http://www.w3.org/2000/svg">
+          <text x="4" y="28" font-family="Plus Jakarta Sans,sans-serif" font-size="17" font-weight="600" fill="#1a2a4a" letter-spacing="1">AKÇA</text>
+          <line x1="4" y1="34" x2="44" y2="34" stroke="#C8922A" stroke-width="2"/>
+        </svg></div>
+      <div class="refs-logo-item"><svg width="140" height="44" viewBox="0 0 140 44" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="8" cy="22" r="4" fill="#C8922A"/>
+          <text x="20" y="28" font-family="Plus Jakarta Sans,sans-serif" font-size="17" font-weight="600" fill="#1a2a4a">Yırcalı</text>
+        </svg></div>
+      <div class="refs-logo-item"><svg width="140" height="44" viewBox="0 0 140 44" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="8" width="28" height="28" rx="3" fill="#1a2a4a"/>
+          <text x="16" y="27" font-family="Plus Jakarta Sans,sans-serif" font-size="13" font-weight="700" fill="white" text-anchor="middle">SA</text>
+          <text x="36" y="28" font-family="Plus Jakarta Sans,sans-serif" font-size="17" font-weight="500" fill="#1a2a4a">Sanko</text>
+        </svg></div>
+      <div class="refs-logo-item"><svg width="140" height="44" viewBox="0 0 140 44" xmlns="http://www.w3.org/2000/svg">
+          <text x="4" y="28" font-family="Plus Jakarta Sans,sans-serif" font-size="17" font-weight="600" fill="#1a2a4a" letter-spacing="1">GÜRS</text>
+          <line x1="4" y1="34" x2="44" y2="34" stroke="#C8922A" stroke-width="2"/>
+        </svg></div>
+      <div class="refs-logo-item"><svg width="140" height="44" viewBox="0 0 140 44" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="8" cy="22" r="4" fill="#C8922A"/>
+          <text x="20" y="28" font-family="Plus Jakarta Sans,sans-serif" font-size="17" font-weight="600" fill="#1a2a4a">Faik C.</text>
+        </svg></div>
+      <div class="refs-logo-item"><svg width="140" height="44" viewBox="0 0 140 44" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="8" width="28" height="28" rx="3" fill="#1a2a4a"/>
+          <text x="16" y="27" font-family="Plus Jakarta Sans,sans-serif" font-size="13" font-weight="700" fill="white" text-anchor="middle">ER</text>
+          <text x="36" y="28" font-family="Plus Jakarta Sans,sans-serif" font-size="17" font-weight="500" fill="#1a2a4a">ERG</text>
+        </svg></div>
+      <div class="refs-logo-item"><svg width="140" height="44" viewBox="0 0 140 44" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="8" cy="22" r="4" fill="#C8922A"/>
+          <text x="20" y="28" font-family="Plus Jakarta Sans,sans-serif" font-size="17" font-weight="600" fill="#1a2a4a">Doğan</text>
+        </svg></div>
+      <div class="refs-logo-item"><svg width="140" height="44" viewBox="0 0 140 44" xmlns="http://www.w3.org/2000/svg">
+          <text x="4" y="28" font-family="Plus Jakarta Sans,sans-serif" font-size="17" font-weight="600" fill="#1a2a4a" letter-spacing="1">AKFEN</text>
+          <line x1="4" y1="34" x2="54" y2="34" stroke="#C8922A" stroke-width="2"/>
+        </svg></div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERİ -->
+<section id="galeri" style="background:var(--off);">
+  <div class="fade-up" style="margin-bottom:32px;">
+    <div class="section-label" data-i18n="gl_tag">Galeri</div>
+    <h2 class="section-title"><span data-i18n="gl_t1">Proje</span><span><em data-i18n="gl_t2">Görselleri</em></span></h2>
+  </div>
+  <div class="gallery-grid fade-up">
+    <div class="g-item">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80" alt="Güneş Enerji Santrali" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"/>
+      <div class="g-overlay"><span class="g-label">Arazi Tipi GES</span></div>
+    </div>
+    <div class="g-item">
+      <img src="https://images.unsplash.com/photo-1548337138-e87d889cc369?w=600&q=80" alt="Rüzgar Türbinleri" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"/>
+      <div class="g-overlay"><span class="g-label">Rüzgar Enerji Santrali</span></div>
+    </div>
+    <div class="g-item">
+      <img src="https://images.unsplash.com/photo-1624397640148-949b1732bb0a?w=600&q=80" alt="GES Panel Yakın" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"/>
+      <div class="g-overlay"><span class="g-label">GES Panel Detayı</span></div>
+    </div>
+    <div class="g-item">
+      <img src="https://images.unsplash.com/photo-1532601224476-15c79f2f7a51?w=900&q=80" alt="Rüzgar Çiftliği" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"/>
+      <div class="g-overlay"><span class="g-label">Offshore RES</span></div>
+    </div>
+    <div class="g-item">
+      <img src="https://images.unsplash.com/photo-1611365892117-00ac5ef43c90?w=600&q=80" alt="Çatı GES" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"/>
+      <div class="g-overlay"><span class="g-label">Çatı GES</span></div>
+    </div>
+  </div>
+</section>
+
+  <!-- İLETİŞİM -->
+<section id="iletisim">
+  <div class="contact-grid">
+    <div class="contact-left fade-up">
+      <div class="section-label" data-i18n="cn_tag">İletişim</div>
+      <h2 class="section-title"><span data-i18n="cn_t1">Bize</span><span><em data-i18n="cn_t2">Ulaşın</em></span></h2>
+      <p data-i18n="cn_desc">Projeniz için ücretsiz ön değerlendirme ve teklif almak için bizimle iletişime geçin.</p>
+      <div class="contact-details">
+        <div class="c-item"><div class="c-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.8" width="18" height="18"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></div><div><div class="c-label" data-i18n="cl1">Adres</div><div class="c-val">Ehlibeyt, Mevlana Blv. No:203, 06520 Çankaya/Ankara</div></div></div>
+        <div class="c-item"><div class="c-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.8" width="18" height="18"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.01 2.22 2 2 0 012 .04h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div><div><div class="c-label" data-i18n="cl2">Telefon</div><div class="c-val">0 (312) 438 38 43</div></div></div>
+        <div class="c-item"><div class="c-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.8" width="18" height="18"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div class="c-label" data-i18n="cl3">E-posta</div><div class="c-val">bilgi@solarwind.com.tr</div></div></div>
+      </div>
+      <div style="margin-top:24px;border:1px solid var(--border);border-radius:2px;overflow:hidden;">
+        <iframe 
+          src="https://www.google.com/maps?q=Mevlana+Bulvarı+No:203+Çankaya+Ankara&output=embed"
+          width="100%" height="260" style="border:0;display:block;" 
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+    <div class="contact-form fade-up">
+      <div class="form-title" data-i18n="fm_title">Mesaj Gönderin</div>
+      <!-- Honeypot - botlar için tuzak, kullanıcı görmez -->
+      <div style="position:absolute;left:-9999px;opacity:0;pointer-events:none;" aria-hidden="true">
+        <input type="text" id="hp_field" tabindex="-1" autocomplete="off">
+      </div>
+      <div class="form-row">
+        <div class="f-group"><label data-i18n="fl1">Ad Soyad</label><input id="f_name" type="text" data-ph="fl1p" placeholder="Adınız Soyadınız" maxlength="80" autocomplete="name"></div>
+        <div class="f-group"><label data-i18n="fl2">Şirket</label><input id="f_company" type="text" data-ph="fl2p" placeholder="Şirket Adı" maxlength="80"></div>
+      </div>
+      <div class="form-row">
+        <div class="f-group"><label data-i18n="fl3">E-posta</label><input id="f_email" type="email" placeholder="ornek@sirket.com" maxlength="100" autocomplete="email"></div>
+        <div class="f-group"><label data-i18n="fl4">Telefon</label><input id="f_phone" type="tel" placeholder="0 5XX XXX XX XX" maxlength="20" autocomplete="tel"></div>
+      </div>
+      <div class="f-group"><label data-i18n="fl5">Hizmet</label>
+        <select id="f_service">
+          <option data-i18n="fo1">Proje Yönetimi</option>
+          <option data-i18n="fo2">Saha Seçimi</option>
+          <option data-i18n="fo3">Lisans İşlemleri</option>
+          <option data-i18n="fo4">Due-Diligence</option>
+          <option data-i18n="fo5">Uluslararası Proje</option>
+          <option data-i18n="fo6">Diğer</option>
+        </select>
+      </div>
+      <div class="f-group">
+        <label data-i18n="fl6">Mesaj</label>
+        <textarea id="f_msg" data-ph="fl6p" placeholder="Projeniz hakkında kısaca bilgi verin..." maxlength="500"></textarea>
+        <div id="f_msg_count" style="font-size:11px;color:var(--gray);text-align:right;margin-top:4px;">0 / 500</div>
+      </div>
+      <div id="form_error" style="display:none;font-size:13px;color:#e53e3e;padding:10px 14px;background:#fff5f5;border:1px solid #fed7d7;border-radius:3px;"></div>
+      <button onclick="submitContactForm()" class="f-submit" data-i18n="fsend">Gönder</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#" class="footer-logo">Solar<em>Wind</em></a>
+      <p data-i18n="fd_desc">Yenilenebilir enerji alanında lisanslı ve lisanssız proje geliştirme, yönetim ve mevzuat danışmanlığı.</p>
+    </div>
+    <div class="footer-col"><h4 data-i18n="fc1">Kurumsal</h4><ul><li><a href="#hakkimizda" data-i18n="n_about">Hakkımızda</a></li><li><a href="#kadro" data-i18n="n_team">Yönetim</a></li></ul></div>
+    <div class="footer-col"><h4 data-i18n="n_srv">Hizmetler</h4><ul><li><a href="#hizmetler" data-i18n="s1t">Proje Yönetimi</a></li><li><a href="#hizmetler" data-i18n="s5t">Lisans İşlemleri</a></li><li><a href="#hizmetler" data-i18n="s6t">Uluslararası</a></li></ul></div>
+    <div class="footer-col"><h4 data-i18n="n_con">İletişim</h4><ul><li><a href="#">Ankara, Türkiye</a></li><li><a href="tel:03124383843">0 312 438 38 43</a></li><li><a href="mailto:bilgi@solarwind.com.tr">bilgi@solarwind.com.tr</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 SolarWind Enerji Mühendislik Danışmanlık San. ve Tic. A.Ş.</p>
+    <div class="footer-social">
+      <a class="social-a" href="#">in</a>
+      <a class="social-a" href="#">𝕏</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const T = {
+  tr:{
+    n_about:"Hakkımızda",n_srv:"Hizmetler",n_prj:"Projeler",n_team:"Kadromuz",n_ref:"Referanslar",n_gal:"Galeri",n_con:"İletişim",
+    h_eyebrow:"Yenilenebilir Enerji Danışmanlığı",
+    h_title:"Sürdürülebilir Enerjide <em>Güvenilir</em> İş Ortağınız",
+    h_desc:"2014'ten bu yana lisanslı ve lisanssız proje geliştirme, proje yönetimi ve mevzuat danışmanlığı alanlarında profesyonel hizmet sunuyoruz.",
+    h_btn1:"Hizmetlerimiz",h_btn2:"İletişime Geç",
+    s1:"Kuruluş Yılı",s2:"Referans Firma",s3:"Proje Uzmanlığı",
+    since:"Ankara · 2014'ten Beri",
+    ab_tag:"Hakkımızda",ab_sub:"Enerji Mühendislik Danışmanlık",
+    ab_t1:"Türkiye'nin Önde Gelen",ab_t2:"Enerji Danışmanlık Firmalarından",
+    ab_p1:"Solarwind Enerji; 2014 yılından bu yana Ankara'da <strong>lisanslı ve lisanssız proje geliştirme</strong>, proje yönetimi ve mevzuat danışmanlığı alanlarında profesyonel hizmet sunmaktadır.",
+    ab_p2:"Ulusal enerji sektöründe hizmet kalitesi anlayışını değiştirerek çıtayı yukarılara taşımış, Türkiye'nin önde gelen firmaları arasında yerini almıştır.",
+    ab_p3:"Kuruluşun stratejik politikası olarak yenilenebilir enerjide hem <strong>yatırımcı</strong> hem de <strong>danışman</strong> olarak faaliyet gösterilmektedir.",
+    asvc1:"Proje Yönetimi",asvc2:"Saha Seçimi",asvc3:"Teknik ve İdari Due-Diligence",asvc4:"Resmi Kurumlar ile İletişim",asvc5:"Önlisans ve Lisans İşlemleri",
+    ft1:"Lisanssız GES",fd1:"Çatı ve arazi tipi projeler",ft2:"Lisanslı GES & RES",fd2:"Büyük ölçekli santral projeleri",ft3:"Mevzuat Danışmanlığı",fd3:"EPDK lisans ve bağlantı",ft4:"Yatırım Analizi",fd4:"Fizibilite ve due-diligence",
+    sv_tag:"Hizmetlerimiz",sv_t1:"Danışmanlık",sv_t2:"Hizmet Alanlarımız",sv_cta:"Teklif Al",
+    s1t:"Proje Yönetimi",s1d:"Başlangıçtan devreye almaya tüm süreçlerin yönetimi.",s2t:"Saha Seçimi",s2d:"Kaynak analizi, arazi araştırması ve saha fizibilite çalışmaları.",s3t:"Due-Diligence",s3d:"Teknik ve idari due-diligence, varlık değerleme.",s4t:"Resmi Kurumlar",s4d:"EPDK, TEİAŞ, TEDAŞ başvuru ve iletişim süreçleri.",s5t:"Lisans İşlemleri",s5d:"Önlisans ve lisans başvurularının hazırlanması ve takibi.",s6t:"Uluslararası Projeler",s6d:"Yurt dışı yenilenebilir enerji projelerinde danışmanlık.",
+    pj_tag:"Projelerimiz",pj_t1:"Geliştirilen &",pj_t2:"Tamamlanan Projeler",tab_dom:"Yurt İçi",tab_int:"Yurt Dışı",
+    p1n:"Çorum Lisanssız GES Projesi",p1d:"İmar planları ve bağlantı anlaşması tamamlanmış 8 MW lisanssız GES.",p2n:"Ankara Lisanssız GES",p2d:"Ankara ilinde geliştirilmiş 8 MW lisanssız güneş enerji santrali projesi.",p3n:"RES Başvuru Projeleri",p3d:"2017 RES başvuruları kapsamında geliştirilen 2 adet rüzgar projesi.",
+    ip_loc:"Uluslararası",ip1n:"Uluslararası GES Projeleri",ip1d:"Yurt dışında yürütülen GES geliştirme projeleri. Detaylar yakında.",ip2n:"Uluslararası RES Projeleri",ip2d:"Yurt dışı rüzgar enerjisi proje geliştirme çalışmaları devam etmektedir.",ip3n:"Uluslararası Danışmanlık",ip3d:"Uluslararası enerji yatırımcılarına danışmanlık ve proje geliştirme.",
+    done:"✓ Tamamlandı",upcoming:"◉ Yakında",
+    tm_tag:"Kadromuz",tm_t1:"Uzman",tm_t2:"Ekibimiz",tm_soon:"Yakında eklenecek",
+    rf_tag:"Referanslarımız",rf_t1:"Birlikte Çalıştığımız",rf_t2:"Firmalar",rf_desc:"Türkiye'nin önde gelen enerji ve sanayi kuruluşlarıyla gerçekleştirdiğimiz başarılı projeler.",rf_prj:"Proje detayları yakında",rf_type:"GES Projesi",
+    gl_tag:"Galeri",gl_t1:"Sahadan",gl_t2:"Kareler",g1:"GES Sahası",g2:"Panel Kurulumu",g3:"Elektrik Altyapısı",g4:"RES Sahası",g5:"Çatı GES",
+    cn_tag:"İletişim",cn_t1:"Bize",cn_t2:"Ulaşın",cn_desc:"Projeniz için ücretsiz ön değerlendirme ve teklif almak için bizimle iletişime geçin.",cl1:"Adres",cl2:"Telefon",cl3:"E-posta",
+    fm_title:"Mesaj Gönderin",fl1:"Ad Soyad",fl1p:"Adınız Soyadınız",fl2:"Şirket",fl2p:"Şirket Adı",fl3:"E-posta",fl4:"Telefon",fl5:"Hizmet",fl6:"Mesaj",fl6p:"Projeniz hakkında bilgi verin...",fo1:"Proje Yönetimi",fo2:"Saha Seçimi",fo3:"Lisans İşlemleri",fo4:"Due-Diligence",fo5:"Uluslararası Proje",fo6:"Diğer",fsend:"Gönder",
+    fd_desc:"Yenilenebilir enerji alanında lisanslı ve lisanssız proje geliştirme, yönetim ve mevzuat danışmanlığı.",fc1:"Kurumsal"
+  },
+  en:{
+    n_about:"About",n_srv:"Services",n_prj:"References",n_team:"Management",n_ref:"References",n_gal:"Gallery",n_con:"Contact",
+    h_eyebrow:"Renewable Energy Consulting",
+    h_title:"Your <em>Trusted</em> Partner in Sustainable Energy",
+    h_desc:"Since 2014, we provide professional services in licensed and unlicensed project development, project management and regulatory consulting.",
+    h_btn1:"Our Services",h_btn2:"Get in Touch",
+    s1:"Project Advisory",s2:"Project Expertise",s3:"Data Center Development",s4:"EV Charging Advisory",
+    since:"Ankara · Since 2014",
+    ab_tag:"About Us",ab_sub:"Energy Engineering Consulting",
+    ab_t1:"",ab_t2:"",
+    ab_p1:"Since 2014, SolarWind Enerji has been providing professional services in <strong>licensed and unlicensed renewable energy project development</strong>, management and regulatory consulting in Ankara.",
+    ab_p2:"From solar and wind to energy storage, EV charging infrastructure and data center projects, we work with a team that <strong>rapidly adapts to new technologies</strong>.",
+    ab_p3:"We operate both as an <strong>investor</strong> and a <strong>consultant</strong>, supporting your project at every stage.",
+    asvc1:"Project Management",asvc2:"Site Selection",asvc3:"Technical & Administrative Due-Diligence",asvc4:"Liaison with Public Authorities",asvc5:"Pre-License & License Procedures",
+    ft1:"Unlicensed Solar",fd1:"Rooftop & ground-mount projects",ft2:"Licensed Solar & Wind",fd2:"Large-scale power plant projects",ft3:"Regulatory Consulting",fd3:"EPDK licensing & grid connection",ft4:"Investment Analysis",fd4:"Feasibility & due-diligence",
+    sv_tag:"Our Services",sv_t1:"Service",sv_t2:"Areas",sv_cta:"Get a Quote",
+    s1t:"Project Management",s1d:"Professional management of all processes from inception to commissioning.",
+    s2t:"Site Selection",s2d:"Resource analysis, land research, zoning and site feasibility studies.",
+    s3t:"Due-Diligence",s3d:"Technical and administrative due-diligence and asset valuation.",
+    s4t:"Public Authorities",s4d:"Management of applications and communications with EPDK, TEİAŞ and TEDAŞ.",
+    s5t:"Licensing",s5d:"Preparation, follow-up and completion of pre-license and license applications.",
+    s6t:"International Projects",s6d:"Development, consulting and investor representation for international renewable energy projects.",
+    pj_tag:"References",pj_t1:"Companies We",pj_t2:"Have Served",tab_dom:"Domestic",tab_int:"International",
+    p1n:"Çorum Unlicensed Solar Plant",p1d:"8 MW unlicensed solar plant with completed zoning plans and grid connection agreement.",
+    p2n:"Ankara Unlicensed Solar",p2d:"8 MW unlicensed solar power plant developed in Ankara.",
+    p3n:"Wind Farm Applications",p3d:"Two wind energy projects developed under the 2017 RES application round.",
+    ip_loc:"International",ip1n:"International Solar Projects",ip1d:"Solar development projects underway in international markets. Details coming soon.",
+    ip2n:"International Wind Projects",ip2d:"International wind energy project development in progress.",
+    ip3n:"International Consulting",ip3d:"Advisory and project development services for international energy investors.",
+    done:"✓ Completed",upcoming:"◉ Coming Soon",
+    tm_tag:"Management",tm_t1:"Board of",tm_t2:"Directors",tm_soon:"Coming soon",
+    p1_role:"Chairman of the Board",p2_role:"Board Member",
+    p1_bio:"Expert in renewable energy project development and management. Extensive experience in licensed and unlicensed solar and wind projects.",
+    p2_bio:"Specialist in energy regulations and licensing procedures. Deep knowledge of EPDK application and permit processes.",
+    rf_tag:"References",rf_t1:"Companies We",rf_t2:"Have Served",rf_desc:"Successful collaborations with Turkey's leading energy and industrial companies.",rf_prj:"Project details coming soon",rf_type:"Solar Project",
+    gl_tag:"Gallery",gl_t1:"Project",gl_t2:"Visuals",g1:"Ground-Mount Solar",g2:"Panel Installation",g3:"Electrical Infrastructure",g4:"Wind Farm",g5:"Rooftop Solar",
+    cn_tag:"Contact",cn_t1:"Get in",cn_t2:"Touch",cn_desc:"Contact us for a free preliminary assessment and quote for your project.",cl1:"Address",cl2:"Phone",cl3:"Email",
+    fm_title:"Send a Message",fl1:"Full Name",fl1p:"Your Full Name",fl2:"Company",fl2p:"Company Name",fl3:"Email",fl4:"Phone",fl5:"Service Type",fl6:"Message",fl6p:"Tell us briefly about your project...",
+    fo1:"Project Management",fo2:"Site Selection",fo3:"Licensing",fo4:"Due-Diligence",fo5:"International Project",fo6:"BESS / Energy Storage",fo7:"Other",fsend:"Send",
+    fd_desc:"Licensed and unlicensed renewable energy project development, management and regulatory consulting.",fc1:"Corporate",fcar:"Careers"
+  },
+  ar:{
+    n_about:"من نحن",n_srv:"الخدمات",n_prj:"المراجع",n_team:"الإدارة",n_ref:"المراجع",n_gal:"معرض الصور",n_con:"اتصل بنا",
+    h_eyebrow:"استشارات الطاقة المتجددة",
+    h_title:"شريكك <em>الموثوق</em> في الطاقة المستدامة",
+    h_desc:"منذ 2014، نقدم خدمات احترافية في تطوير المشاريع المرخصة وغير المرخصة وإدارتها والاستشارات التنظيمية.",
+    h_btn1:"خدماتنا",h_btn2:"تواصل معنا",
+    s1:"استشارات المشاريع",s2:"خبرة المشاريع",s3:"تطوير مراكز البيانات",s4:"استشارات شحن EV",
+    since:"أنقرة · منذ 2014",
+    ab_tag:"من نحن",ab_sub:"استشارات هندسة الطاقة",
+    ab_t1:"",ab_t2:"",
+    ab_p1:"تقدم SolarWind Enerji منذ 2014 خدمات احترافية في <strong>تطوير مشاريع الطاقة المتجددة</strong> المرخصة وغير المرخصة، وإدارتها والاستشارات التنظيمية في أنقرة.",
+    ab_p2:"من الطاقة الشمسية وطاقة الرياح إلى تخزين الطاقة وبنية تحتية لشحن السيارات الكهربائية ومشاريع مراكز البيانات، نعمل مع فريق <strong>يتكيف بسرعة مع التقنيات الجديدة</strong>.",
+    ab_p3:"نعمل بوصفنا <strong>مستثمراً</strong> و<strong>مستشاراً</strong> في آنٍ واحد، ونقف إلى جانبك في كل مرحلة من مراحل مشروعك.",
+    asvc1:"إدارة المشاريع",asvc2:"اختيار المواقع",asvc3:"العناية الواجبة التقنية والإدارية",asvc4:"التواصل مع الجهات الرسمية",asvc5:"إجراءات الترخيص المسبق والترخيص",
+    ft1:"الطاقة الشمسية غير المرخصة",fd1:"مشاريع الأسطح والأراضي",ft2:"الطاقة الشمسية والرياح المرخصة",fd2:"مشاريع محطات الطاقة الكبيرة",ft3:"الاستشارات التنظيمية",fd3:"ترخيص EPDK وربط الشبكة",ft4:"تحليل الاستثمار",fd4:"دراسة الجدوى والعناية الواجبة",
+    sv_tag:"خدماتنا",sv_t1:"مجالات",sv_t2:"الخدمات",sv_cta:"احصل على عرض",
+    s1t:"إدارة المشاريع",s1d:"إدارة احترافية لجميع مراحل المشروع من البداية حتى التشغيل.",
+    s2t:"اختيار المواقع",s2d:"تحليل الموارد وأبحاث الأراضي ودراسات جدوى المواقع.",
+    s3t:"العناية الواجبة",s3d:"العناية الواجبة التقنية والإدارية وتقييم الأصول.",
+    s4t:"الجهات الرسمية",s4d:"إدارة طلبات التواصل مع EPDK وTEİAŞ وTEDAŞ.",
+    s5t:"إجراءات الترخيص",s5d:"إعداد ومتابعة وإتمام طلبات الترخيص المسبق والترخيص.",
+    s6t:"المشاريع الدولية",s6d:"تطوير ومتابعة وتمثيل المستثمرين في مشاريع الطاقة المتجددة الدولية.",
+    pj_tag:"المراجع",pj_t1:"الشركات التي",pj_t2:"قدمنا لها خدماتنا",tab_dom:"محلي",tab_int:"دولي",
+    p1n:"محطة طاقة شمسية في تشوروم",p1d:"محطة طاقة شمسية 8 ميجاواط غير مرخصة مع خطط تنظيمية واتفاقية شبكة مكتملة.",
+    p2n:"طاقة شمسية في أنقرة",p2d:"محطة طاقة شمسية 8 ميجاواط غير مرخصة طوّرت في أنقرة.",
+    p3n:"مشاريع طاقة الرياح",p3d:"مشروعا طاقة رياح طوّرا ضمن جولة طلبات RES لعام 2017.",
+    ip_loc:"دولي",ip1n:"مشاريع الطاقة الشمسية الدولية",ip1d:"مشاريع تطوير الطاقة الشمسية في الأسواق الدولية. التفاصيل قريباً.",
+    ip2n:"مشاريع طاقة الرياح الدولية",ip2d:"أعمال تطوير مشاريع طاقة الرياح الدولية جارية.",
+    ip3n:"الاستشارات الدولية",ip3d:"خدمات استشارية وتطوير مشاريع للمستثمرين الدوليين في قطاع الطاقة.",
+    done:"✓ مكتمل",upcoming:"◉ قريباً",
+    tm_tag:"الإدارة",tm_t1:"مجلس",tm_t2:"الإدارة",tm_soon:"سيضاف قريباً",
+    p1_role:"رئيس مجلس الإدارة",p2_role:"عضو مجلس الإدارة",
+    p1_bio:"خبير في تطوير وإدارة مشاريع الطاقة المتجددة. خبرة واسعة في مشاريع الطاقة الشمسية وطاقة الرياح.",
+    p2_bio:"متخصص في لوائح الطاقة وإجراءات الترخيص. معرفة عميقة بطلبات EPDK وإجراءات الحصول على التصاريح.",
+    rf_tag:"مراجعنا",rf_t1:"الشركات التي",rf_t2:"قدمنا لها خدماتنا",rf_desc:"تعاونات ناجحة مع شركات الطاقة والصناعة الرائدة في تركيا.",rf_prj:"تفاصيل المشروع قريباً",rf_type:"مشروع طاقة شمسية",
+    gl_tag:"معرض الصور",gl_t1:"مرئيات",gl_t2:"المشاريع",g1:"محطة طاقة شمسية أرضية",g2:"تركيب الألواح",g3:"البنية الكهربائية",g4:"مزرعة رياح",g5:"طاقة شمسية على السطح",
+    cn_tag:"اتصل بنا",cn_t1:"تواصل",cn_t2:"معنا",cn_desc:"تواصل معنا للحصول على تقييم أولي مجاني وعرض أسعار لمشروعك.",cl1:"العنوان",cl2:"الهاتف",cl3:"البريد الإلكتروني",
+    fm_title:"أرسل رسالة",fl1:"الاسم الكامل",fl1p:"اسمك الكامل",fl2:"الشركة",fl2p:"اسم الشركة",fl3:"البريد الإلكتروني",fl4:"الهاتف",fl5:"نوع الخدمة",fl6:"الرسالة",fl6p:"أخبرنا باختصار عن مشروعك...",
+    fo1:"إدارة المشاريع",fo2:"اختيار المواقع",fo3:"الترخيص",fo4:"العناية الواجبة",fo5:"مشروع دولي",fo6:"BESS / تخزين الطاقة",fo7:"أخرى",fsend:"إرسال",
+    fd_desc:"تطوير مشاريع الطاقة المتجددة المرخصة وغير المرخصة وإدارتها والاستشارات التنظيمية.",fc1:"الشركة",fcar:"الوظائف"
+  }
+};
+
+
+
+
+// ── CONTACT FORM ──
+function sanitize(str) {
+  return str.replace(/[<>"'`;&|]/g, '').trim().slice(0, 500);
+}
+
+function validateEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+// Char counter
+const msgField = document.getElementById('f_msg');
+const msgCount = document.getElementById('f_msg_count');
+if (msgField && msgCount) {
+  msgField.addEventListener('input', function() {
+    const len = this.value.length;
+    msgCount.textContent = len + ' / 500';
+    msgCount.style.color = len > 450 ? '#e53e3e' : 'var(--gray)';
+  });
+}
+
+// Rate limiting
+let lastSubmit = 0;
+
+function submitContactForm() {
+  const hp = document.getElementById('hp_field');
+  if (hp && hp.value) return; // Bot caught
+
+  const now = Date.now();
+  if (now - lastSubmit < 30000) {
+    showFormError('Lütfen 30 saniye bekleyip tekrar deneyin.');
+    return;
+  }
+
+  const name    = sanitize(document.getElementById('f_name')?.value || '');
+  const company = sanitize(document.getElementById('f_company')?.value || '');
+  const email   = sanitize(document.getElementById('f_email')?.value || '');
+  const phone   = sanitize(document.getElementById('f_phone')?.value || '');
+  const service = sanitize(document.getElementById('f_service')?.value || '');
+  const msg     = sanitize(document.getElementById('f_msg')?.value || '');
+
+  if (!name) { showFormError('Ad Soyad zorunludur.'); return; }
+  if (!email || !validateEmail(email)) { showFormError('Geçerli bir e-posta adresi giriniz.'); return; }
+  if (!msg) { showFormError('Mesaj alanı zorunludur.'); return; }
+
+  hideFormError();
+  lastSubmit = now;
+
+  const subject = encodeURIComponent('Proje Talebi — ' + service);
+  const body = encodeURIComponent(
+    'Ad Soyad: ' + name + '\n' +
+    'Şirket: ' + company + '\n' +
+    'E-posta: ' + email + '\n' +
+    'Telefon: ' + phone + '\n' +
+    'Hizmet: ' + service + '\n\n' +
+    'Mesaj:\n' + msg
+  );
+
+  window.location.href = 'mailto:bilgi@solarwind.com.tr?subject=' + subject + '&body=' + body;
+}
+
+function showFormError(msg) {
+  const el = document.getElementById('form_error');
+  if (el) { el.textContent = msg; el.style.display = 'block'; }
+}
+function hideFormError() {
+  const el = document.getElementById('form_error');
+  if (el) el.style.display = 'none';
+}
+
+// ── PARTICLE NETWORK ──
+(function() {
+  const canvas = document.getElementById('particleCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W, H, particles = [], mouse = {x: -999, y: -999};
+  const NUM = 80, CONNECT_DIST = 140, GOLD = 'rgba(200,146,42,', WHITE = 'rgba(255,255,255,';
+
+  function resize() {
+    W = canvas.width = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+  }
+
+  function Particle() {
+    this.x = Math.random() * W;
+    this.y = Math.random() * H;
+    this.vx = (Math.random() - 0.5) * 0.4;
+    this.vy = (Math.random() - 0.5) * 0.4;
+    this.r = Math.random() * 2 + 1;
+    this.gold = Math.random() > 0.7;
+  }
+
+  Particle.prototype.update = function() {
+    this.x += this.vx; this.y += this.vy;
+    if (this.x < 0 || this.x > W) this.vx *= -1;
+    if (this.y < 0 || this.y > H) this.vy *= -1;
+  };
+
+  function init() {
+    particles = [];
+    for (let i = 0; i < NUM; i++) particles.push(new Particle());
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    for (let i = 0; i < particles.length; i++) {
+      particles[i].update();
+      const p = particles[i];
+      // Draw dot
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.gold ? GOLD + '0.7)' : WHITE + '0.35)';
+      ctx.fill();
+      // Connect nearby
+      for (let j = i + 1; j < particles.length; j++) {
+        const q = particles[j];
+        const dx = p.x - q.x, dy = p.y - q.y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < CONNECT_DIST) {
+          const alpha = (1 - dist / CONNECT_DIST) * 0.25;
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(q.x, q.y);
+          ctx.strokeStyle = (p.gold || q.gold) ? GOLD + alpha + ')' : WHITE + (alpha * 0.6) + ')';
+          ctx.lineWidth = 0.8;
+          ctx.stroke();
+        }
+      }
+      // Connect to mouse
+      const mdx = p.x - mouse.x, mdy = p.y - mouse.y;
+      const mdist = Math.sqrt(mdx*mdx + mdy*mdy);
+      if (mdist < 180) {
+        const alpha = (1 - mdist / 180) * 0.5;
+        ctx.beginPath();
+        ctx.moveTo(p.x, p.y);
+        ctx.lineTo(mouse.x, mouse.y);
+        ctx.strokeStyle = GOLD + alpha + ')';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', () => { resize(); init(); });
+  document.getElementById('hero').addEventListener('mousemove', e => {
+    const r = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - r.left;
+    mouse.y = e.clientY - r.top;
+  });
+  document.getElementById('hero').addEventListener('mouseleave', () => { mouse.x = -999; mouse.y = -999; });
+
+  resize(); init(); draw();
+})();
+
+// ── (OLD SUN REMOVED) ──
+(function() {
+  const canvas = document.getElementById('sunCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  const cx = W / 2, cy = H / 2;
+  let t = 0;
+
+  function drawSun() {
+    ctx.clearRect(0, 0, W, H);
+    const glowSize = 160 + Math.sin(t * 0.6) * 12;
+
+    // Outer glow
+    const glow3 = ctx.createRadialGradient(cx, cy, glowSize * 0.4, cx, cy, glowSize * 1.6);
+    glow3.addColorStop(0, 'rgba(180,90,10,0.0)');
+    glow3.addColorStop(0.4, 'rgba(200,120,20,0.06)');
+    glow3.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = glow3;
+    ctx.beginPath(); ctx.arc(cx, cy, glowSize * 1.6, 0, Math.PI * 2); ctx.fill();
+
+    const glow2 = ctx.createRadialGradient(cx, cy, glowSize * 0.3, cx, cy, glowSize * 1.1);
+    glow2.addColorStop(0, 'rgba(245,166,35,0.0)');
+    glow2.addColorStop(0.5, 'rgba(245,140,20,0.18)');
+    glow2.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = glow2;
+    ctx.beginPath(); ctx.arc(cx, cy, glowSize * 1.1, 0, Math.PI * 2); ctx.fill();
+
+    const glow1 = ctx.createRadialGradient(cx, cy, glowSize * 0.5, cx, cy, glowSize);
+    glow1.addColorStop(0, 'rgba(255,200,60,0.0)');
+    glow1.addColorStop(0.6, 'rgba(245,166,35,0.28)');
+    glow1.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = glow1;
+    ctx.beginPath(); ctx.arc(cx, cy, glowSize, 0, Math.PI * 2); ctx.fill();
+
+    // Sun body
+    const r = 130 + Math.sin(t * 0.4) * 3;
+    const sunGrad = ctx.createRadialGradient(cx - r*0.25, cy - r*0.25, r * 0.05, cx, cy, r);
+    sunGrad.addColorStop(0,   '#FFFDE0');
+    sunGrad.addColorStop(0.15,'#FFE890');
+    sunGrad.addColorStop(0.4, '#F5C030');
+    sunGrad.addColorStop(0.65,'#E08010');
+    sunGrad.addColorStop(0.85,'#C05808');
+    sunGrad.addColorStop(1,   '#8B3A04');
+    ctx.fillStyle = sunGrad;
+    ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.fill();
+
+    // Surface patches
+    ctx.globalAlpha = 0.07 + Math.sin(t * 0.3) * 0.02;
+    ctx.fillStyle = '#7a2800';
+    ctx.beginPath(); ctx.ellipse(cx + 30, cy - 20, 45, 35, t * 0.02, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.ellipse(cx - 40, cy + 30, 30, 22, -t * 0.015, 0, Math.PI * 2); ctx.fill();
+    ctx.globalAlpha = 1;
+
+    // Highlight
+    const hl = ctx.createRadialGradient(cx - r*0.32, cy - r*0.32, 0, cx - r*0.25, cy - r*0.25, r * 0.55);
+    hl.addColorStop(0, 'rgba(255,255,220,0.45)');
+    hl.addColorStop(0.5,'rgba(255,240,180,0.1)');
+    hl.addColorStop(1,  'rgba(0,0,0,0)');
+    ctx.fillStyle = hl;
+    ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.fill();
+
+    t += 0.012;
+    requestAnimationFrame(drawSun);
+  }
+  drawSun();
+})();
+
+function setLang(lang) {
+  const t = T[lang];
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.getAttribute('data-i18n');
+    if (t[k] !== undefined) el.innerHTML = t[k];
+  });
+  document.querySelectorAll('[data-ph]').forEach(el => {
+    const k = el.getAttribute('data-ph');
+    if (t[k] !== undefined) el.placeholder = t[k];
+  });
+  document.querySelectorAll('.lang-btn').forEach(b => {
+    b.classList.toggle('active', b.textContent.trim().toLowerCase() === lang);
+  });
+}
+
+function showSrvCat(id, btn) {
+  document.querySelectorAll('.srv-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.srv-cat-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+
+function switchTab(id, btn) {
+  document.querySelectorAll('.projects-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+});
+
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+</script>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/903124383843" target="_blank" title="WhatsApp" style="position:fixed;bottom:28px;right:28px;z-index:999;background:#25D366;color:white;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 4px 20px rgba(0,0,0,0.2);text-decoration:none;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='scale(1.1)';this.style.boxShadow='0 6px 28px rgba(0,0,0,0.25)'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 4px 20px rgba(0,0,0,0.2)'">💬</a>
+</body>
+</html>
